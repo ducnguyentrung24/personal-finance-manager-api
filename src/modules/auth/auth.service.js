@@ -1,5 +1,6 @@
 const User = require('../user/user.model');
 const ApiError = require('../../utils/ApiError');
+const { generateToken } = require('../../utils/jwt');
 
 exports.register = async (data) => {
     const { name, email, password } = data;
@@ -19,4 +20,29 @@ exports.register = async (data) => {
     delete userObj.password;
 
     return userObj;
+};
+
+exports.login = async (data) => {
+    const { email, password } = data;
+
+    const user = await User.findOne({ email }).select('+password');
+    if (!user) {
+        throw new ApiError(401, 'Invalid email or password');
+    }
+
+    if (!user.isActive) {
+        throw new ApiError(403, 'Your account is blocked. Please contact support.');
+    }
+
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+        throw new ApiError(401, 'Invalid email or password');
+    }
+
+    const token = generateToken({
+        id: user._id,
+        role: user.role
+    });
+
+    return { token };
 };
