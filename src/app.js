@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 
+const errorMiddleware = require('./middlewares/error.middleware');
+
 const app = express();
 
 // Middleware
@@ -14,5 +16,8 @@ app.use(morgan('dev'));
 app.get('/', (req, res) => {
     res.send('Welcome to the Personal Finance API');
 });
+
+// Error handling middleware
+app.use(errorMiddleware);
 
 module.exports = app;
