@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const errorMiddleware = require('./middlewares/error.middleware');
 const authRoutes = require('./modules/auth/auth.route');
 const userRoutes = require('./modules/user/user.route');
+const categoryRoutes = require('./modules/category/category.route');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(morgan('dev'));
 // Routes
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
+app.use('/categories', categoryRoutes);
 
 // Test route
 app.get('/', (req, res) => {
