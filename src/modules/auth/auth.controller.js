@@ -20,3 +20,11 @@ exports.login = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.getMe = async (req, res, next) => {
+    try {
+        return successResponse(res, req.user, 'Current user');
+    } catch (error) {
+        next(error);
+    }
+};
