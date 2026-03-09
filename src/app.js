@@ -17,6 +17,8 @@ app.get('/', (req, res) => {
     res.send('Welcome to the Personal Finance API');
 });
 
+const User = require("./modules/user/user.model");
+
 // Error handling middleware
 app.use(errorMiddleware);
 
