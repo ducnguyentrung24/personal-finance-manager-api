@@ -46,3 +46,21 @@ exports.login = async (data) => {
 
     return { token };
 };
+
+exports.changePassword = async (userId, oldPassword, newPassword) => {
+    const user = await User.findById(userId).select('+password');
+    if (!user) {
+        throw new ApiError(404, 'User not found');
+    }
+
+    const isMatch = await user.comparePassword(oldPassword);
+    if (!isMatch) {
+        throw new ApiError(400, 'Old password is incorrect');
+    }
+
+    user.password = newPassword;
+
+    await user.save();
+
+    return true;
+};

@@ -28,3 +28,14 @@ exports.getMe = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.changePassword = async (req, res, next) => {
+    try {
+        const { oldPassword, newPassword } = req.body;
+        await authService.changePassword(req.user._id, oldPassword, newPassword);
+
+        return successResponse(res, null, 'Password changed successfully');
+    } catch (error) {
+        next(error);
+    }
+};
