@@ -9,7 +9,7 @@ exports.getTransactions = async (userId, query) => {
 
     const filter = { userId };
 
-    if (query.moth && query.year) {
+    if (query.month && query.year) {
         const startDate = new Date(query.year, query.month - 1, 1);
         const endDate = new Date(query.year, query.month, 0);
 
