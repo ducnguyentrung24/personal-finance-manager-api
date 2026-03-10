@@ -64,3 +64,18 @@ exports.changePassword = async (userId, oldPassword, newPassword) => {
 
     return true;
 };
+
+exports.updateMe = async (userId, data) => {
+    const user = await User.findById(userId);
+    if (!user) {
+        throw new ApiError(404, 'User not found');
+    }
+
+    user.name = data.name;
+    await user.save();
+
+    const userObj = user.toObject();
+    delete userObj.password;
+
+    return userObj;
+};

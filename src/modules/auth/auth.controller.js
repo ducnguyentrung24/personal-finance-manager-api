@@ -39,3 +39,13 @@ exports.changePassword = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.updateMe = async (req, res, next) => {
+    try {
+        const updatedUser = await authService.updateMe(req.user._id, req.body);
+
+        return successResponse(res, updatedUser, 'Profile updated successfully');
+    } catch (error) {
+        next(error);
+    }
+};

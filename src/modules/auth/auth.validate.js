@@ -37,3 +37,11 @@ exports.changePasswordSchema = Joi.object({
         .min(6)
         .required()
 });
+
+exports.updateMeSchema = Joi.object({
+    name: Joi.string()
+        .trim()
+        .min(2)
+        .max(50)
+        .required()
+});
