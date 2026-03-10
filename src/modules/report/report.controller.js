@@ -30,3 +30,25 @@ exports.getTopExpenseCategories = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.exportReport = async (req, res, next) => {
+    try {
+        const workbook = await reportService.exportTransactionsToExcel(req.user._id);
+
+        res.setHeader(
+            'Content-Type', 
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        );
+
+        res.setHeader(
+            'Content-Disposition', 
+            'attachment; filename=transactions_report.xlsx'
+        );
+
+        await workbook.xlsx.write(res);
+
+        res.end();
+    } catch (error) {
+        next(error);
+    }
+};
