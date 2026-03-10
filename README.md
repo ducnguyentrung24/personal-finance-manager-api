@@ -21,6 +21,7 @@ Project này được xây dựng nhằm mục đích luyện tập backend vớ
 
 ## 2) Cấu trúc thư mục dự án
 
+```
 personal-finance-api/
 ├── .env.example
 ├── package.json
@@ -47,6 +48,7 @@ personal-finance-api/
         ├── ApiError.js
         ├── jwt.js
         └── response.js
+```
 
 ### Mô tả nhanh
 
