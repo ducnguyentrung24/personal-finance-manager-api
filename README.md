@@ -21,10 +21,11 @@ Project này được xây dựng nhằm mục đích luyện tập backend vớ
 
 ## 2) Cấu trúc thư mục dự án
 
-```
+```text
 personal-finance-api/
 ├── .env.example
 ├── package.json
+├── README.md
 └── src/
     ├── app.js
     ├── server.js
