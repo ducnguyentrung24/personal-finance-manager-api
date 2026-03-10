@@ -6,6 +6,7 @@ const errorMiddleware = require('./middlewares/error.middleware');
 const authRoutes = require('./modules/auth/auth.route');
 const userRoutes = require('./modules/user/user.route');
 const categoryRoutes = require('./modules/category/category.route');
+const transactionRoutes = require('./modules/transaction/transaction.route');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(morgan('dev'));
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/categories', categoryRoutes);
+app.use('/transactions', transactionRoutes);
 
 // Test route
 app.get('/', (req, res) => {

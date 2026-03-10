@@ -1,0 +1,12 @@
+const express = require('express');
+const router = express.Router();
+
+const transactionController = require('./transaction.controller');
+const authMiddleware = require('../../middlewares/auth.middleware');
+
+router.get('/', authMiddleware, transactionController.getTransactions);
+router.post('/', authMiddleware, transactionController.createTransaction);
+router.patch('/:id', authMiddleware, transactionController.updateTransaction);
+router.delete('/:id', authMiddleware, transactionController.deleteTransaction);
+
+module.exports = router;
