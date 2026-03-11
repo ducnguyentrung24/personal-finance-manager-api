@@ -13,7 +13,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-    origin: "*"
+    origin: "https://personal-finance-manager-murex-nine.vercel.app"
 }));
 app.use(express.json());
 app.use(morgan('dev'));
